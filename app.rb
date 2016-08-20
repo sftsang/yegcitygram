@@ -2,7 +2,7 @@ require 'faraday'
 require 'sinatra'
 require 'json'
 
-get '/mobile-food-facility-permits' do
+get '/yeg-permits' do
 	# url = URI('http://data.sfgov.org/resource/rqzj-sfat.json')
   url = URI('https://data.edmonton.ca/resource/rwuh-apwg.json')
 	url.query = Faraday::Utils.build_query(
