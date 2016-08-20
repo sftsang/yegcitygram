@@ -29,6 +29,8 @@ get '/yeg-permits' do
           ]
         }
       }
+
+      #Test comment
       # title = "A mobile food facility permit (number #{record['permit']}) has been approved for a #{record['facilitytype']} serving #{record['fooditems']} at #{record['address']}. The applicant is #{record['applicant']}. Find more schedule information here: #{record['schedule']}."
       # {
       #   'id' => record['objectid'],
