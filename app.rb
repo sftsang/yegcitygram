@@ -21,7 +21,7 @@ get '/yeg-permits' do
     features = collection.map do |record|
       {
         'job_description' => record['job_description'],
-        'date' => 'issue_date',
+        'date' => record['issue_date'],
         'geometry' => {
           'type' => 'Point',
 
