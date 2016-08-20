@@ -23,6 +23,7 @@ get '/yeg-permits' do
         'job_description' => record['job_description'],
         'geometry' => {
           'type' => 'Point',
+          'date' => 'issue_date',
           'coordinates' => [
             record['longitude'].to_f,
             record['latitude'].to_f
