@@ -7,7 +7,7 @@ get '/yeg-permits' do
   url = URI('https://data.edmonton.ca/resource/rwuh-apwg.json')
 	url.query = Faraday::Utils.build_query(
     '$order' => 'permit_date DESC',
-    '$limit' => 100,
+    '$limit' => 10,
     '$where' => " latitude IS NOT NULL"+
                 " AND longitude IS NOT NULL"
   )
@@ -20,7 +20,14 @@ get '/yeg-permits' do
 
     features = collection.map do |record|
       {
-        'job_description' => record['job_description']
+        'job_description' => record['job_description'],
+        'geometry' => {
+          'type' => 'Point',
+          'coordinates' => [
+            record['longitude'].to_f,
+            record['latitude'].to_f
+          ]
+        }
       }
       # title = "A mobile food facility permit (number #{record['permit']}) has been approved for a #{record['facilitytype']} serving #{record['fooditems']} at #{record['address']}. The applicant is #{record['applicant']}. Find more schedule information here: #{record['schedule']}."
       # {
