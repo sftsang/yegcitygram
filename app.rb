@@ -7,7 +7,7 @@ get '/mobile-food-facility-permits' do
   url = URI('https://data.edmonton.ca/resource/rwuh-apwg.json')
 	url.query = Faraday::Utils.build_query(
     '$order' => 'permit_date DESC',
-    '$limit' => 1,
+    '$limit' => 100,
     '$where' => " latitude IS NOT NULL"+
                 " AND longitude IS NOT NULL"
   )
