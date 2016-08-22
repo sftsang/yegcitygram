@@ -21,8 +21,8 @@ get '/yeg-permits' do
     features = collection.map do |record|
       title = "Permit number #{record['permit_number']} has been issued on #{record['issue_date']} for #{record['address']}. This is a #{record['job_category']} permit."
       {
-        'id'=> record['permit_number']
-        'type'=> 'Feature', #What is this? Needed?
+        'id'=> record['permit_number'],
+        'type'=> 'Feature',
         'properties' => record.merge('title' => title),
         'job_description' => record['job_description'],
         'geometry' => {
