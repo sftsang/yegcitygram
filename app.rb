@@ -19,12 +19,14 @@ get '/yeg-permits' do
     collection = JSON.parse(response.body)  
 
     features = collection.map do |record|
+      title = "Permit number #{record['permit_number']} has been issued on #{record['issue_date']} for #{record['address']}. This is a #{record['job_category']} permit."
       {
+        'id'=> record['permit_number']
+        'type'=> 'Feature', #What is this? Needed?
+        'properties' => record.merge('title' => title),
         'job_description' => record['job_description'],
-        'date' => record['issue_date'],
         'geometry' => {
           'type' => 'Point',
-
           'coordinates' => [
             record['longitude'].to_f,
             record['latitude'].to_f
