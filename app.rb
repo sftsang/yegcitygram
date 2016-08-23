@@ -11,7 +11,7 @@ get '/yeg-permits' do
     '$where' => " latitude IS NOT NULL"+
                 " AND longitude IS NOT NULL"+
                 " AND permit_number IS NOT NULL"+
-                " AND date_trunc_ymd(permit_date) > '#{(date_trunc_ymd(DateTime.now) - 7).iso8601}'"
+                #" AND date_trunc_ymd(permit_date) > '#{(date_trunc_ymd(DateTime.now) - 7).iso8601}'"
   )
 
   connection = Faraday.new(url: url.to_s)
