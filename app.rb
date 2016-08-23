@@ -9,8 +9,7 @@ get '/yeg-permits' do
     '$order' => 'permit_date DESC',
     '$limit' => 100,
     '$where' => " latitude IS NOT NULL"+
-                " AND longitude IS NOT NULL"+
-                " AND issue_date >= '#{(DateTime.now - 7).iso8601}'"
+                " AND longitude IS NOT NULL"
   )
 
   connection = Faraday.new(url: url.to_s)
