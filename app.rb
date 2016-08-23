@@ -7,9 +7,10 @@ get '/yeg-permits' do
   url = URI('https://data.edmonton.ca/resource/rwuh-apwg.json')
 	url.query = Faraday::Utils.build_query(
     '$order' => 'permit_date DESC',
-    '$limit' => 10,
+    '$limit' => 100,
     '$where' => " latitude IS NOT NULL"+
-                " AND longitude IS NOT NULL"
+                " AND longitude IS NOT NULL"+
+                " AND issue_date > '#{(DateTime.now - 7).iso8601}'"
   )
 
   connection = Faraday.new(url: url.to_s)
