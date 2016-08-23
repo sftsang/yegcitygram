@@ -9,7 +9,8 @@ get '/yeg-permits' do
     '$order' => 'permit_date DESC',
     '$limit' => 100,
     '$where' => " latitude IS NOT NULL"+
-                " AND longitude IS NOT NULL"
+                " AND longitude IS NOT NULL"+
+                " AND permit_number IS NOT NULL"
   )
 
   connection = Faraday.new(url: url.to_s)
@@ -19,7 +20,7 @@ get '/yeg-permits' do
     collection = JSON.parse(response.body)  
 
     features = collection.map do |record|
-      title = "Permit number #{record['permit_number']} has been issued for #{record['address']}. This is a #{record['job_category']} permit #{record['job_description']}."
+      title = "Permit number #{record['permit_number']} has been issued for #{record['address']}. This is a #{record['job_category']} permit #{record['job_description']}"
       {
         'id'=> record['permit_number'],
         'type'=> 'Feature',
