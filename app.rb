@@ -25,7 +25,7 @@ get '/yeg-permits' do
         'id'=> record['permit_number'],
         'type'=> 'Feature',
         'properties' => record.merge('title' => title),
-        'job_description' => record['job_description'],
+        #'job_description' => record['job_description'],
         'geometry' => {
           'type' => 'Point',
           'coordinates' => [
